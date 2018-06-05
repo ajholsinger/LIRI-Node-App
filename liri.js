@@ -1,6 +1,6 @@
 require('dotenv').config();
 var Twitter = require('twitter');
-var Spotify = require('node-spotify-api');
+//var Spotify = require('node-spotify-api');
 var keys = require('./keys');
 var request = require('request');
 var arg1 = process.argv[2];
@@ -23,7 +23,7 @@ request('http://www.omdbapi.com/?t=' + arg2 + '&apikey=trilogy', function (error
    }
 });
 
-var spotify = new Spotify(keys.spotify);
+// var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
 var count = 1;
@@ -32,16 +32,16 @@ var params = { screen_name: process.argv[3], count: 20 };
 
 client.get('statuses/user_timeline', params, function (error, tweets, response) {
    
-   if ((!error) && (arg1 === 'my-tweets')) {
+   /*if ((!error) && (arg1 === 'my-tweets')) {
        for (var i = 0; i < tweets.length; i++) {
            var myTweets = ('\n' + count++ + '.) ' + tweets[i].text + '\n');
            console.log(myTweets);
        }
-   }
-
+   }*/
+   console.log(tweets);
 });
 
-spotify.search({ type: 'track', query: arg2, limit: 1}, function (err, data) {
+/*spotify.search({ type: 'track', query: arg2, limit: 1}, function (err, data) {
    if (err) {
        return console.log('Error occurred: ' + err);
    }
@@ -50,4 +50,4 @@ spotify.search({ type: 'track', query: arg2, limit: 1}, function (err, data) {
            console.log(data.tracks.items[i].artists[i].name);
        }
    } 
-});
+});*/
